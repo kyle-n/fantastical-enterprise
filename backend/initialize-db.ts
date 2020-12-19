@@ -1,6 +1,8 @@
+// With more time, I would write @types/mysql-promisify. I've contributed to DefinitelyTyped before :)
+// @ts-ignore
 import {MySQL} from 'mysql-promisify';
 
-const db = new MySQL({
+global.db = new MySQL({
   host: '127.0.0.1',
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
@@ -8,5 +10,3 @@ const db = new MySQL({
   database: 'fantastical',
   timeout: 60000
 });
-
-export default db;

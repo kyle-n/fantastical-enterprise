@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import apiRouter from './routers';
+import './initialize-db';
 
 dotenv.config();
 
