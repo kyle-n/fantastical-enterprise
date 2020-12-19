@@ -1,6 +1,6 @@
-import { logDOM } from '@testing-library/react';
 import React from 'react';
-import { Row, Col } from 'antd';
+import {Link} from 'react-router-dom';
+import { Button, Row, Col } from 'antd';
 import logo from './flexibits.svg';
 import './Header.css';
 
@@ -16,7 +16,11 @@ const Header = () => (
         <a href="https://flexibits.com/about" title="About Flexibits">About</a> 
         <a href="https://flexibits.com/blog" title="Flexibits blog">Blog</a>
       </Col>
-      <Col span={8}>
+      <Col span={8} id="account-link-container">
+        <Link to="/login" title="Log in">Sign In</Link>
+        <Link to="/signup" title="Sign up">
+          <Button type="link" id="signup-button">Try for Free</Button>
+        </Link>
       </Col>
     </Row>
   </header>

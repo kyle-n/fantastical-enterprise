@@ -2,3 +2,17 @@
   margin: 0 1rem;
   color: black;
 }
+
+#signup-button {
+  background-color: rgb(26, 121, 255);
+  border-radius: 24px;
+  box-shadow: rgb(115, 173, 255) 0px 10px 10px -10px;
+  color: white;
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+#account-link-container {
+  display: flex;
+  justify-content: flex-end;
+}
