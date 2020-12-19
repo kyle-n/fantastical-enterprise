@@ -1,9 +1,11 @@
+type BooleanDigit = 0 | 1;
+
 export interface UserData {
   id: number;
   email: string;
   password: string;
   companyId: number;
-  active: boolean;
+  active: boolean | BooleanDigit;
   lastSignInDate: Date;
   signUpDate: Date;
 }
@@ -23,7 +25,7 @@ export class User implements UserData {
     this.email = userData.email;
     this.password = userData.password;
     this.companyId = userData.companyId;
-    this.active = userData.active;
+    this.active = Boolean(userData.active);
     this.lastSignInDate = userData.lastSignInDate;
     this.signUpDate = userData.signUpDate;
   }
