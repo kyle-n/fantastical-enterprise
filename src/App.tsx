@@ -5,6 +5,7 @@ import 'antd/dist/antd.css'
 import {User} from '../models/user';
 import Header from './Header';
 import HomePage from './Home';
+import Footer from './Footer';
 
 interface GlobalState {
   user: User | null;
@@ -52,6 +53,9 @@ function App() {
               })}
             </Switch>
           </Layout.Content>
+          <Layout.Footer>
+            <Footer />
+          </Layout.Footer>
         </Layout>
       </main>
       </BrowserRouter>
