@@ -7,4 +7,6 @@ export default class User {
   active: boolean;
   lastSignInDate: Date;
   signUpDate: Date;
+
+  constructor() {}
 }
