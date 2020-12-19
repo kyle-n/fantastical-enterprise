@@ -5,8 +5,8 @@ const router = Router();
 
 router.get('/:id', async (req, resp) => {
   const {results} = await global.db.query({
-    sql: `SELECT * FROM company WHERE id = :id;`,
-    params: {id: req.body.id}}
+    sql: `SELECT * FROM companies WHERE id = :id;`,
+    params: {id: req.params.id}}
   );
 
   return resp.json(results[0]);
@@ -24,7 +24,7 @@ router.post('/', async (req, resp) => {
       sql: `SELECT * FROM companies WHERE id = LAST_INSERT_ID();`,
     });
     const postedCompany: CompanyData = results[0];
-    return resp.status(201).send(postedCompany);
+    return resp.status(200).json(postedCompany);
   } catch (e) {
     // @TODO: Parse out the error and send specific HTTP error codes
     return resp.status(409).send(e);
@@ -46,7 +46,7 @@ router.patch('/:id', async (req, resp) => {
       params: {id: req.params.id}
     });
     const patchedCompany: CompanyData = results[0];
-    return resp.status(204).json(patchedCompany);
+    return resp.status(200).json(patchedCompany);
   } catch (e) {
     return resp.status(500).send(e);
   }
