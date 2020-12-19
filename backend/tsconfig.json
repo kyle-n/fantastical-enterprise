@@ -17,6 +17,7 @@
     "outDir": "../public"
   },
   "include": [
-    "./"
+    "./",
+    "../models"
   ]
 }
