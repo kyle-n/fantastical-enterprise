@@ -4,12 +4,21 @@
   background: none;
 }
 
-#splash-content div {
+#splash-content {
+  padding: 2rem;
+}
+
+#splash-content .solo-text {
   margin: 2rem auto;
   width: max-content;
   text-align: center;
 }
 
-.subhead {
-  color: gray;
+#splash-paragraph-container {
+ font-size: 1.2rem;
+ width: max-content;
+ margin: 0 auto;
+}
+#splash-paragraph-container .ant-typography {
+  margin-bottom: 0.5rem;
 }
