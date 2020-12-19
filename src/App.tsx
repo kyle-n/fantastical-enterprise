@@ -4,6 +4,7 @@ import {Layout} from 'antd';
 import 'antd/dist/antd.css'
 import {User} from '../models/user';
 import Header from './Header';
+import HomePage from './Home';
 
 interface GlobalState {
   user: User | null;
@@ -17,8 +18,8 @@ const GlobalStateContext = React.createContext<[GlobalState, Dispatch<SetStateAc
 
 const routes = [
   {
-    path: 'home',
-    layout: <div></div>,
+    path: '',
+    layout: <HomePage />,
   },
   {
     path: 'signup',

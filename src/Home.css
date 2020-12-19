@@ -1,0 +1,15 @@
+#splash-title-container {
+  display: flex;
+  justify-content: center;
+  background: none;
+}
+
+#splash-content div {
+  margin: 2rem auto;
+  width: max-content;
+  text-align: center;
+}
+
+.subhead {
+  color: gray;
+}
