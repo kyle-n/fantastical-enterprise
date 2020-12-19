@@ -1,8 +1,10 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
-
 import apiRouter from './routers';
+
+dotenv.config();
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
