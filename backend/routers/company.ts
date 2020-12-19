@@ -1,5 +1,6 @@
 import {Router} from 'express';
 import { CompanyData } from '../../models/company';
+import { UserData } from '../../models/user';
 
 const router = Router();
 
@@ -10,6 +11,19 @@ router.get('/:id', async (req, resp) => {
   );
 
   return resp.json(results[0]);
+});
+
+router.get('/:id/users', async (req, resp) => {
+  try {
+    const {results} = await global.db.query({
+      sql: `SELECT * FROM users WHERE companyId = :companyId;`,
+      params: {companyId: req.params.id}
+    });
+    const users: Array<UserData> = results;
+    return resp.json({users});
+  } catch (e) {
+    return resp.status(500).send(e);
+  }
 });
 
 // @TODO: Full JSON Schema validation for request bodies
