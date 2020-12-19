@@ -10,6 +10,7 @@
   color: white;
   margin-left: 1rem;
   font-weight: 500;
+  height: fit-content;
 }
 
 #account-link-container {

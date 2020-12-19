@@ -18,12 +18,19 @@ const Header = () => (
       </Col>
       <Col span={8} id="account-link-container">
         <Link to="/login" title="Log in">Sign In</Link>
-        <Link to="/signup" title="Sign up">
-          <Button type="link" id="signup-button">Try for Free</Button>
-        </Link>
+        <SignupButtonLink />
       </Col>
     </Row>
   </header>
 );
+
+export const SignupButtonLink = (props?: {large?: boolean}) => {
+  const buttonStyle = props?.large ? {fontSize: '2rem'} : {};
+  return (
+    <Link to="/signup" title="Sign up">
+      <Button type="link" id="signup-button" style={buttonStyle}>Try for Free</Button>
+    </Link>
+  );
+}
 
 export default Header;

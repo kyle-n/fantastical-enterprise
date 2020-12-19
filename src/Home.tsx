@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 import hero from './main-hero.png';
 import {Typography, Layout} from 'antd';
+import { SignupButtonLink } from './Header';
 const {Title, Paragraph} = Typography;
 const {Header, Content} = Layout;
 
@@ -17,6 +18,9 @@ const HomePage = () => (
       <div className="solo-text">
         <Title level={2}>Powerful features for power users.</Title>
         <Title level={3} type="secondary">Help your team work faster with the best calendar and tasks app.</Title>
+      </div>
+      <div className="solo-text">
+        <SignupButtonLink large />
       </div>
       <div id="splash-paragraph-container">
         <Paragraph>
