@@ -5,6 +5,6 @@ export default class User {
 
   companyId: number;
   active: boolean;
-  lastSignedIn: Date;
-  signedUp: Date;
+  lastSignInDate: Date;
+  signUpDate: Date;
 }
