@@ -20,7 +20,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "app": "tsc -p backend/tsconfig.json && nodemon public/fantastical-server.js",
+    "app": "tsc -p backend/tsconfig.json && nodemon public/backend/fantastical-server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -47,6 +47,7 @@
   "proxy": "http://localhost:8080",
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.9",
     "@types/express": "^4.17.9",
     "@types/node": "^12.19.9",
     "ts-node": "^9.1.1"
