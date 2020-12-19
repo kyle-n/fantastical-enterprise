@@ -11,7 +11,7 @@ import './initialize-db';
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(bodyParser.json())
+app.use(express.json());
 
 // cors
 app.use((req, res, next) => {
