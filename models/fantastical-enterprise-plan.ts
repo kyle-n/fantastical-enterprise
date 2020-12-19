@@ -7,7 +7,7 @@ interface FantasticalEnterprisePlanData {
   activeSeats: number;
 }
 
-export default class FantasticalEnterprisePlan implements FantasticalEnterprisePlanData {
+export class FantasticalEnterprisePlan implements FantasticalEnterprisePlanData {
   id: number;
   name: string;
   monthlyPerMonthCost: number;
@@ -34,5 +34,16 @@ export default class FantasticalEnterprisePlan implements FantasticalEnterpriseP
 
   get availableSeats(): number {
     return this.totalSeats - this.activeSeats;
+  }
+
+  toJson(): FantasticalEnterprisePlanData {
+    return {
+      id: this.id,
+      name: this.name,
+      monthlyPerMonthCost: this.monthlyPerMonthCost,
+      yearlyPerMonthCost: this.yearlyPerMonthCost,
+      totalSeats: this.totalSeats,
+      activeSeats: this.activeSeats
+    };
   }
 }
