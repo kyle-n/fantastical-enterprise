@@ -47,30 +47,23 @@ const PlanPage = () => {
     }
   };
 
+  const optimizationVisible = Boolean(globalState.company && currentPlan);
   return (
-    <>
-      {/* <CompanySection company={globalState.company} onCreateCompany={setCompany} />
-      <Divider />
-      <PlanSection currentPlan={currentPlan}
-                   onUpsertPlan={setPlan}
-                   hasCompany={Boolean(globalState.company?.id)} /> */}
-      {/* {globalState.company && currentPlan ? (
-        <>
-          <Divider />
-          <OptimizationSection plan={currentPlan} company={globalState.company} />
-        </>
-      ) : null} */}
-      <Row>
+    <Row>
+      <Col span={optimizationVisible ? 12 : 24}>
+        <CompanySection company={globalState.company} onCreateCompany={setCompany} />
+        <Divider />
+        <PlanSection currentPlan={currentPlan}
+                     onUpsertPlan={setPlan}
+                     hasCompany={Boolean(globalState.company?.id)} />
+      </Col>
+      {optimizationVisible ? (
         <Col span={12}>
-          <CompanySection company={mockCompany} onCreateCompany={() => {}} />
           <Divider />
-          <PlanSection currentPlan={mockPlan} onUpsertPlan={() => {}} hasCompany={true} />
+          <OptimizationSection plan={currentPlan!} company={globalState.company!} />
         </Col>
-        <Col span={12}>
-          <OptimizationSection plan={mockPlan} company={mockCompany} />
-        </Col>
-      </Row>
-    </>
+      ) : null}
+    </Row>
   );
 };
 
@@ -96,10 +89,10 @@ const OptimizationSection = (props: OptimizationSectionProps) => {
     <section className="details-section">
       <SeatsUsedDisplay company={props.company} />
       <Paragraph>
-        Your current bill is {monthlyCost} per month and {yearlyCost} per year.
+        Your current bill is <strong>{monthlyCost}</strong> per month and <strong>{yearlyCost}</strong> per year.
       </Paragraph>
       <Paragraph>
-        You are currently paying for {props.company.availableSeats} unused seat{props.company.availableSeats === 1 ? '' : 's'}.
+        You are currently paying for <strong>{props.company.availableSeats}</strong> unused seat{props.company.availableSeats === 1 ? '' : 's'}.
       </Paragraph>
     </section>
   );
@@ -122,7 +115,7 @@ const SeatsUsedDisplay = (props: {company: Company}) => {
     <div id="seats-stats">
       <span id="active-seats" style={{color: activeSeatCountColor}}>{props.company.activeSeats}</span> 
       <span id="seat-slash">/</span> 
-      <span id="total-seats">{props.company.totalSeats}</span>
+      <span id="total-seats">{props.company.totalSeats} seats used</span>
     </div>
   );
 };
@@ -150,10 +143,10 @@ const PlanSection = (props: PlanSectionProps) => {
 };
 
 const DetailLabel = (props: {children: string | number}) => (
-  <Col span={4}><strong>{props.children}</strong></Col>
+  <Col span={8}><strong>{props.children}</strong></Col>
 );
 const DetailContent = (props: {children: string | number}) => (
-  <Col span={20}>{props.children}</Col>
+  <Col span={16}>{props.children}</Col>
 );
 
 const PlanDetails = (props: {plan: FantasticalEnterprisePlan}) => (
