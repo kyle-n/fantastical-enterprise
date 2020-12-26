@@ -7,6 +7,7 @@ import Header from './Header';
 import HomePage from './Home';
 import PlanPage from './PlanPage';
 import SignupPage from './Signup';
+import LoginPage from './LoginPage';
 import Footer from './Footer';
 
 interface GlobalState {
@@ -30,7 +31,7 @@ const routes = [
   },
   {
     path: 'login',
-    layout: <div></div>
+    layout: <LoginPage />
   },
   {
     path: 'plan',
