@@ -4,11 +4,28 @@ import * as CurrencyFormat from 'react-currency-format';
 import {GlobalStateContext} from './App';
 import CompanyForm, {CompanyFormData} from './CompanyForm';
 import PlanForm, {PlanFormData} from './PlanForm';
+import './PlanPage.css';
 import { Company } from './models/company';
 import BackendConnector from './BackendConnector';
 import {Col, Divider, Row, Typography} from 'antd';
 import { FantasticalEnterprisePlan } from './models/fantastical-enterprise-plan';
 const {Title, Paragraph} = Typography;
+
+const mockPlan = new FantasticalEnterprisePlan({
+  id: 1,
+  name: 'Test Plan',
+  monthlyPerMonthCost: 3.45,
+  yearlyPerMonthCost: 1.23
+});
+const mockCompany = new Company({
+  id: 3,
+  name: 'Flexibits',
+  planAdministratorId: 1,
+  planId: 1,
+  totalSeats: 10,
+  activeSeats: 3,
+  userIds: []
+});
 
 const PlanPage = () => {
   const [globalState, setGlobalState] = useContext(GlobalStateContext);
@@ -32,17 +49,22 @@ const PlanPage = () => {
 
   return (
     <>
-      <CompanySection company={globalState.company} onCreateCompany={setCompany} />
+      {/* <CompanySection company={globalState.company} onCreateCompany={setCompany} />
       <Divider />
       <PlanSection currentPlan={currentPlan}
                    onUpsertPlan={setPlan}
-                   hasCompany={Boolean(globalState.company?.id)} />
-      {globalState.company && currentPlan ? (
+                   hasCompany={Boolean(globalState.company?.id)} /> */}
+      {/* {globalState.company && currentPlan ? (
         <>
           <Divider />
           <OptimizationSection plan={currentPlan} company={globalState.company} />
         </>
-      ) : null}
+      ) : null} */}
+      <CompanySection company={mockCompany} onCreateCompany={() => {}} />
+      <Divider />
+      <PlanSection currentPlan={mockPlan} onUpsertPlan={() => {}} hasCompany={true} />
+      <Divider />
+      <OptimizationSection plan={mockPlan} company={mockCompany} />
     </>
   );
 };
@@ -66,7 +88,7 @@ const OptimizationSection = (props: OptimizationSectionProps) => {
                                       fixedDecimalScale={true}
                                       prefix="$" />
   return (
-    <section>
+    <section className="details-section">
       <Paragraph>
         Your current bill is {monthlyCost} per month and {yearlyCost} per year.
       </Paragraph>
@@ -99,17 +121,27 @@ const PlanSection = (props: PlanSectionProps) => {
   )
 };
 
+const DetailLabel = (props: {children: string | number}) => (
+  <Col span={4}><strong>{props.children}</strong></Col>
+);
+const DetailContent = (props: {children: string | number}) => (
+  <Col span={20}>{props.children}</Col>
+);
+
 const PlanDetails = (props: {plan: FantasticalEnterprisePlan}) => (
-  <section id="plan-details">
+  <section id="plan-details" className="details-section">
     <Row>
-      <Col span={4}>Name</Col>
-      <Col span={20}>{props.plan.name}</Col>
+      <Title level={2}>Plan</Title>
+    </Row>
+    <Row>
+      <DetailLabel>Name</DetailLabel>
+      <DetailContent>{props.plan.name}</DetailContent>
 
-      <Col span={4}>Cost Per Month</Col>
-      <Col span={20}>{props.plan.monthlyPerMonthCost}</Col>
+      <DetailLabel>Cost Per Month</DetailLabel>
+      <DetailContent>{props.plan.monthlyPerMonthCost}</DetailContent>
 
-      <Col span={4}>Cost Per Year</Col>
-      <Col span={20}>{props.plan.yearlyPerYearCost}</Col>
+      <DetailLabel>Cost Per Year</DetailLabel>
+      <DetailContent>{props.plan.yearlyPerYearCost}</DetailContent>
     </Row>
   </section>
 );
@@ -143,19 +175,22 @@ type CompanyDetailsProps = {
 };
 
 const CompanyDetails = (props: CompanyDetailsProps) => (
-  <section id="company-details">
+  <section id="company-details" className="details-section">
     <Row>
-      <Col span={4}>Name</Col>
-      <Col span={20}>{props.company.name}</Col>
+      <Title level={2}>Company</Title>
+    </Row>
+    <Row>
+      <DetailLabel>Name</DetailLabel>
+      <DetailContent>{props.company.name}</DetailContent>
 
-      <Col span={4}>Total Seats</Col>
-      <Col span={20}>{props.company.totalSeats}</Col>
+      <DetailLabel>Total Seats</DetailLabel>
+      <DetailContent>{props.company.totalSeats}</DetailContent>
 
-      <Col span={4}>Active Seats</Col>
-      <Col span={20}>{props.company.activeSeats}</Col>
+      <DetailLabel>Active Seats</DetailLabel>
+      <DetailContent>{props.company.activeSeats}</DetailContent>
 
-      <Col span={4}>Available Seats</Col>
-      <Col span={20}>{props.company.availableSeats}</Col>
+      <DetailLabel>Available Seats</DetailLabel>
+      <DetailContent>{props.company.availableSeats}</DetailContent>
     </Row>
   </section>
 );
