@@ -25,6 +25,19 @@ router.post('/', async (req, resp) => {
   }
 });
 
+router.post('/login', async (req, resp) => {
+  try {
+    const {results} = await global.db.query({
+      sql: `SELECT * FROM users WHERE email = :email AND password = :password;`,
+      params: req.body
+    });
+    const userData: UserData = results[0];
+    return resp.json(userData);
+  } catch (e) {
+    return resp.status(500).send(e);
+  }
+});
+
 router.get('/:id', async (req, resp) => {
   try {
     const {results} = await global.db.query({

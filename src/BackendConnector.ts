@@ -17,8 +17,16 @@ async function signup(formData: UserFormData): Promise<User> {
   return new User(newUserData);
 }
 
+async function login(formData: UserFormData): Promise<User> {
+  const url = '/api/users/login';
+  const response = await axios.post(url, formData);
+  const userData: UserData = response.data;
+  return new User(userData);
+}
+
 const BackendConnector = {
-  signup
+  signup,
+  login
 };
 
 export default BackendConnector;
