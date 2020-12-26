@@ -23,7 +23,7 @@ const mockCompany = new Company({
   planAdministratorId: 1,
   planId: 1,
   totalSeats: 10,
-  activeSeats: 3,
+  activeSeats: 9,
   userIds: []
 });
 
@@ -60,11 +60,16 @@ const PlanPage = () => {
           <OptimizationSection plan={currentPlan} company={globalState.company} />
         </>
       ) : null} */}
-      <CompanySection company={mockCompany} onCreateCompany={() => {}} />
-      <Divider />
-      <PlanSection currentPlan={mockPlan} onUpsertPlan={() => {}} hasCompany={true} />
-      <Divider />
-      <OptimizationSection plan={mockPlan} company={mockCompany} />
+      <Row>
+        <Col span={12}>
+          <CompanySection company={mockCompany} onCreateCompany={() => {}} />
+          <Divider />
+          <PlanSection currentPlan={mockPlan} onUpsertPlan={() => {}} hasCompany={true} />
+        </Col>
+        <Col span={12}>
+          <OptimizationSection plan={mockPlan} company={mockCompany} />
+        </Col>
+      </Row>
     </>
   );
 };
@@ -89,13 +94,36 @@ const OptimizationSection = (props: OptimizationSectionProps) => {
                                       prefix="$" />
   return (
     <section className="details-section">
+      <SeatsUsedDisplay company={props.company} />
       <Paragraph>
         Your current bill is {monthlyCost} per month and {yearlyCost} per year.
       </Paragraph>
       <Paragraph>
-        You are currently paying for {props.company.availableSeats} unused seats.
+        You are currently paying for {props.company.availableSeats} unused seat{props.company.availableSeats === 1 ? '' : 's'}.
       </Paragraph>
     </section>
+  );
+};
+
+const SeatsUsedDisplay = (props: {company: Company}) => {
+  let activeSeatCountColor: string;
+  const percentUsed = props.company.activeSeats / props.company.totalSeats * 100;
+  console.log(percentUsed)
+  if (percentUsed < 25) {
+    activeSeatCountColor = 'red';
+  } else if (percentUsed < 50) {
+    activeSeatCountColor = '#fdb81e';
+  } else if (percentUsed < 75) {
+    activeSeatCountColor = '#c5cc00';
+  } else {
+    activeSeatCountColor = 'green';
+  }
+  return (
+    <div id="seats-stats">
+      <span id="active-seats" style={{color: activeSeatCountColor}}>{props.company.activeSeats}</span> 
+      <span id="seat-slash">/</span> 
+      <span id="total-seats">{props.company.totalSeats}</span>
+    </div>
   );
 };
 

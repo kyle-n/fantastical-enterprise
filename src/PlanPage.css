@@ -1,3 +1,18 @@
 .details-section {
   margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+#active-seats {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+#seat-slash {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#total-seats {
+  font-size: 3rem;
 }
