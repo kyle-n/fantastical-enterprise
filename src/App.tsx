@@ -52,7 +52,7 @@ function App() {
           <Layout.Header style={{background: 'none', height: 'min-content'}}>
             <Header />
           </Layout.Header>
-          <Layout.Content>
+          <Layout.Content style={{margin: '0 1rem'}}>
             <Switch>
               {routes.map(route => {
                 return (<Route key={route.path} exact path={'/' + route.path}>{route.layout}</Route>);

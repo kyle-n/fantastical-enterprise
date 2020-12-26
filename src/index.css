@@ -4,6 +4,7 @@ body {
   font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(240, 242, 245) !important;
 }
 
 code {
