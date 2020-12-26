@@ -9,7 +9,7 @@ const {Header, Content} = Layout;
 const HomePage = () => (
   <Layout style={{background: 'none'}}>
     <Header id="splash-title-container">
-      <Title level={1}>Fantastical Enterprise</Title>
+      <Title level={1} style={{textAlign: 'center'}}>Fantastical Enterprise</Title>
     </Header>
     <Content id="splash-content">
       <div className="solo-text">
