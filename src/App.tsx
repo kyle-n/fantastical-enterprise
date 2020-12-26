@@ -5,6 +5,7 @@ import 'antd/dist/antd.css'
 import {User} from '../models/user';
 import Header from './Header';
 import HomePage from './Home';
+import SignupPage from './Signup';
 import Footer from './Footer';
 
 interface GlobalState {
@@ -24,7 +25,7 @@ const routes = [
   },
   {
     path: 'signup',
-    layout: <div></div>
+    layout: <SignupPage />
   },
   {
     path: 'login',
@@ -49,7 +50,7 @@ function App() {
           <Layout.Content>
             <Switch>
               {routes.map(route => {
-                return (<Route key={route.path} path={'/' + route.path}>{route.layout}</Route>);
+                return (<Route key={route.path} exact path={'/' + route.path}>{route.layout}</Route>);
               })}
             </Switch>
           </Layout.Content>
