@@ -1,9 +1,15 @@
 import {Router} from 'express';
+import dayjs from 'dayjs';
 import { UserData } from '../../src/models/user';
 
 const router = Router();
 
 router.post('/', async (req, resp) => {
+  const userData = req.body;
+  userData.lastSignInDate = dayjs(userData.lastSignInDate)
+    .format('YYYY-MM-DD HH:mm:ss');
+  userData.signUpDate = dayjs(userData.lastSignInDate)
+    .format('YYYY-MM-DD HH:mm:ss');
   try {
     await global.db.query({
       sql: `INSERT INTO users (email, password, companyId, active, lastSignInDate, signUpDate) VALUES (:email, :password, :companyId, :active, :lastSignInDate, :signUpDate);`,
@@ -33,7 +39,11 @@ router.get('/:id', async (req, resp) => {
 });
 
 router.patch('/:id', async (req, resp) => {
-  const patchData: UserData = req.body;
+  const patchData = req.body;
+  patchData.lastSignInDate = dayjs(patchData.lastSignInDate)
+    .format('YYYY-MM-DD HH:mm:ss');
+  patchData.signUpDate = dayjs(patchData.lastSignInDate)
+    .format('YYYY-MM-DD HH:mm:ss');
   try {
     await global.db.query({
       sql: `UPDATE users SET email = :email, password = :password, companyId = :companyId, active = :active, lastSignInDate = :lastSignInDate, signUpDate = :signUpDate WHERE id = :id;`,
