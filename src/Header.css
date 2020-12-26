@@ -15,9 +15,18 @@
 
 #account-link-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+}
+@media screen and (min-width: 768px) {
+  #account-link-container {
+    justify-content: flex-end;
+  }
 }
 
-img {
+#logo {
   max-height: 2rem;
+}
+
+header {
+  /* margin-top: 2rem; */
 }

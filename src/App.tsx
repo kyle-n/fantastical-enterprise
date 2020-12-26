@@ -49,7 +49,7 @@ function App() {
       <BrowserRouter>
       <main>
         <Layout>
-          <Layout.Header style={{background: 'none'}}>
+          <Layout.Header style={{background: 'none', height: 'min-content'}}>
             <Header />
           </Layout.Header>
           <Layout.Content>
