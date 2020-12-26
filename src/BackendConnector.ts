@@ -49,12 +49,20 @@ async function getPlans(): Promise<Array<FantasticalEnterprisePlan>> {
   return plans.map(planData => new FantasticalEnterprisePlan(planData));
 }
 
+async function getPlan(planId: number): Promise<FantasticalEnterprisePlan> {
+  const url = '/api/plans/' + planId;
+  const response = await axios.get(url);
+  const planData: FantasticalEnterprisePlanData = response.data;
+  return new FantasticalEnterprisePlan(planData);
+}
+
 const BackendConnector = {
   signup,
   login,
   createCompany,
   updateCompany,
-  getPlans
+  getPlans,
+  getPlan
 };
 
 export default BackendConnector;
