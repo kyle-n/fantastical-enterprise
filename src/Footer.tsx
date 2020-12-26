@@ -9,7 +9,7 @@ const footerLayout = {
 const Footer = () => (
   <footer style={footerLayout}>
     <div>
-      <img src={logo} style={{filter: 'grayscale(100%)'}} alt="Flexibits logo" />
+      <img src={logo} style={{filter: 'grayscale(100%)', maxHeight: '1.5rem'}} alt="Flexibits logo" />
     </div>
     <div>
       Copyright &#169; 2020 Kyle Nazario
