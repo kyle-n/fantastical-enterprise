@@ -12,7 +12,7 @@ const SignupPage = () => {
   const onSignup = (formData: UserFormData) => {
     BackendConnector.signup(formData).then(newUser => {
       // @TODO: Generate JWTs with desired expiration, store them in localStorage
-      setGlobalState(() => ({user: newUser}));
+      setGlobalState(() => ({...globalState, user: newUser}));
       history.push('/plan');
     });
   };

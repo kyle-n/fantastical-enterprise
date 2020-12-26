@@ -11,7 +11,7 @@ const LoginPage = () => {
   const [globalState, setGlobalState] = useContext(GlobalStateContext);
   const onLogin = (formData: UserFormData) => {
     BackendConnector.login(formData).then(user => {
-      setGlobalState(() => ({user}));
+      setGlobalState(() => ({...globalState, user}));
       history.push('/plan');
     });
   };

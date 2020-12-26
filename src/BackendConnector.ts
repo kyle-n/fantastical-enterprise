@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { User, UserData } from './models/user';
 import {UserFormData} from './UserForm';
+import {CompanyFormData} from './CompanyForm';
+import { Company, CompanyData } from './models/company';
 
 async function signup(formData: UserFormData): Promise<User> {
   const url = '/api/users';
@@ -24,9 +26,17 @@ async function login(formData: UserFormData): Promise<User> {
   return new User(userData);
 }
 
+async function createCompany(formData: CompanyFormData) {
+  const url = '/api/companies';
+  const response = await axios.post(url, formData);
+  const companyData: CompanyData = response.data;
+  return new Company(companyData);
+}
+
 const BackendConnector = {
   signup,
-  login
+  login,
+  createCompany
 };
 
 export default BackendConnector;

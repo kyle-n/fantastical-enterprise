@@ -9,13 +9,16 @@ import PlanPage from './PlanPage';
 import SignupPage from './Signup';
 import LoginPage from './LoginPage';
 import Footer from './Footer';
+import { Company } from './models/company';
 
 interface GlobalState {
   user: User | null;
+  company: Company | null;
 }
 
 const initialState: GlobalState = {
-  user: null
+  user: null,
+  company: null
 };
 
 export const GlobalStateContext = React.createContext<[GlobalState, Dispatch<SetStateAction<GlobalState>>]>([initialState, () => {}]);
