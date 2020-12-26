@@ -29,7 +29,7 @@ async function login(formData: UserFormData): Promise<User> {
 
 async function createCompany(formData: CompanyFormData, userId: number) {
   const url = '/api/companies';
-  const body = {...formData, planAdministratorId: userId};
+  const body = {...formData, planAdministratorId: userId, planId: null};
   const response = await axios.post(url, body);
   const companyData: CompanyData = response.data;
   return new Company(companyData);

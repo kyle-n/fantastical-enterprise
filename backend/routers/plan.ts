@@ -11,7 +11,7 @@ router.get('/', async (req, resp) => {
 router.get('/:id', async (req, resp) => {
   try {
     const {results} = await global.db.query({
-      sql: `SELECT * FROM users WHERE id = :id;`,
+      sql: `SELECT * FROM plans WHERE id = :id;`,
       params: {id: req.params.id}
     });
     const planData: FantasticalEnterprisePlanData = results[0];

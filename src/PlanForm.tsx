@@ -30,11 +30,11 @@ const PlanForm = (props: PlanFormProps) => {
           initialValues={{remember: true}}
           onFinish={props.onSubmit}>
       <Item label=""
-            name="name"
+            name="planId"
             required>
             {/* style={{display: 'flex', justifyContent: 'flex-end'}}> */}
         <Radio.Group disabled={props.disabled}>
-          {plans.map(plan => <PlanOption plan={plan} />)}
+          {plans.map(plan => <PlanOption key={plan.id} plan={plan} />)}
         </Radio.Group>
       </Item>
       <Item wrapperCol={{offset, span}}>

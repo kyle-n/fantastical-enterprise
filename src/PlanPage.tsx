@@ -20,7 +20,7 @@ const PlanPage = () => {
   };
   const setPlan = (formData: PlanFormData) => {
     if (globalState.company?.id) {
-      const companyFormData: any = globalState.company.toJson();
+      const companyFormData = globalState.company.toJson();
       companyFormData.planId = formData.planId;
       BackendConnector.updateCompany(globalState.company.id, companyFormData)
         .then(company => {
