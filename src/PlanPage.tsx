@@ -28,13 +28,16 @@ const PlanPage = () => {
     <>
       <CompanySection company={globalState.company} onCreateCompany={setCompany} />
       <Divider />
-      <PlanSection planId={globalState.company?.planId} onUpsertPlan={setPlan} />
+      <PlanSection planId={globalState.company?.planId}
+                   onUpsertPlan={setPlan}
+                   hasCompany={Boolean(globalState.company?.id)} />
     </>
   );
 };
 
 type PlanSectionProps = {
   planId: number | undefined;
+  hasCompany: boolean;
   onUpsertPlan: (formData: PlanFormData) => void;
 };
 
@@ -42,14 +45,14 @@ const PlanSection = (props: PlanSectionProps) => {
   return props.planId ? (
     <div>{props.planId} yep</div>
   ) : (
-    <section>
+    <section style={{opacity: props.hasCompany ? 1 : 0.5}}>
       <Row>
         {/* @TODO: Reusable page title component */}
         <Col span={20} offset={4}>
           <Title className="" level={2}>Select a Plan</Title>
         </Col>
       </Row>
-      <PlanForm onSubmit={props.onUpsertPlan} />
+      <PlanForm onSubmit={props.onUpsertPlan} disabled={!props.hasCompany} />
     </section>
   )
 };

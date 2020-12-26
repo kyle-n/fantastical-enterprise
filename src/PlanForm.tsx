@@ -1,6 +1,11 @@
-import React from 'react';
-import {Button, Form, Input} from 'antd';
+import React, { useEffect, useState } from 'react';
+// @ts-ignore - Seems to be no types package for this?
+import * as CurrencyFormat from 'react-currency-format';
+import {Button, Card, Form, Radio, Typography} from 'antd';
+import BackendConnector from './BackendConnector';
+import { FantasticalEnterprisePlan } from './models/fantastical-enterprise-plan';
 const {Item} = Form;
+const {Paragraph} = Typography;
 
 export type PlanFormData = {
   planId: number;
@@ -8,37 +13,62 @@ export type PlanFormData = {
 
 type PlanFormProps = {
   onSubmit: (formData: PlanFormData) => void;
+  disabled?: boolean;
 };
 
 const PlanForm = (props: PlanFormProps) => {
+  const [plans, setPlans] = useState<Array<FantasticalEnterprisePlan>>([]);
+  useEffect(() => {
+    BackendConnector.getPlans().then(setPlans);
+  }, []);
+
   const offset = 4;
   const span = 16;
-  // @TODO: Custom validation so user can't have activeSeats > totalSeats
   return (
-    <Form labelCol={{span: offset}}
-          wrapperCol={{span}}
+    <Form wrapperCol={{span, offset: 10}}
           name="User login"
           initialValues={{remember: true}}
           onFinish={props.onSubmit}>
-      <Item label="Name"
+      <Item label=""
             name="name"
             required>
-        <Input type="text" />
-      </Item>
-      <Item label="Total Seats"
-            name="totalSeats"
-            required>
-        <Input type="number" />
-      </Item>
-      <Item label="Active Seats"
-            name="activeSeats"
-            required>
-        <Input type="number" />
+            {/* style={{display: 'flex', justifyContent: 'flex-end'}}> */}
+        <Radio.Group disabled={props.disabled}>
+          {plans.map(plan => <PlanOption plan={plan} />)}
+        </Radio.Group>
       </Item>
       <Item wrapperCol={{offset, span}}>
         <Button type="primary" htmlType="submit">Submit</Button>
       </Item>
     </Form>
+  );
+};
+
+const PlanOption = (props: {plan: FantasticalEnterprisePlan}) => {
+  // @TODO: Localized currencies
+  const monthlyCost = <CurrencyFormat value={props.plan.monthlyPerMonthCost}
+                                      displayType="text"
+                                      thousandSeparator={true}
+                                      decimalScale={2}
+                                      fixedDecimalScale={true}
+                                      prefix="$" />
+  const yearlyCost = <CurrencyFormat value={props.plan.yearlyPerYearCost}
+                                      displayType="text"
+                                      thousandSeparator={true}
+                                      decimalScale={2}
+                                      fixedDecimalScale={true}
+                                      prefix="$" />
+  return (
+    <Radio key={props.plan.id} value={props.plan.id}>
+      <Card title={props.plan.name} style={{marginTop: '1rem', right: '40%'}}>
+        <Paragraph>
+          <strong>{monthlyCost}</strong> / month
+        </Paragraph>
+        <Paragraph>
+          <strong>{yearlyCost}</strong> / year
+        </Paragraph>
+      </Card>
+    </Radio>
   );
 };
 

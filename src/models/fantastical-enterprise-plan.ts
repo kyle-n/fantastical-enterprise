@@ -1,4 +1,4 @@
-interface FantasticalEnterprisePlanData {
+export interface FantasticalEnterprisePlanData {
   id: number;
   name: string;
   monthlyPerMonthCost: number;

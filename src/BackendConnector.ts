@@ -3,6 +3,7 @@ import { User, UserData } from './models/user';
 import {UserFormData} from './UserForm';
 import {CompanyFormData} from './CompanyForm';
 import { Company, CompanyData } from './models/company';
+import { FantasticalEnterprisePlan, FantasticalEnterprisePlanData } from './models/fantastical-enterprise-plan';
 
 async function signup(formData: UserFormData): Promise<User> {
   const url = '/api/users';
@@ -41,11 +42,19 @@ async function updateCompany(companyId: number, formData: CompanyFormData) {
   return new Company(companyData);
 }
 
+async function getPlans(): Promise<Array<FantasticalEnterprisePlan>> {
+  const url = '/api/plans';
+  const response = await axios.get(url);
+  const plans: Array<FantasticalEnterprisePlanData> = response.data.plans;
+  return plans.map(planData => new FantasticalEnterprisePlan(planData));
+}
+
 const BackendConnector = {
   signup,
   login,
   createCompany,
-  updateCompany
+  updateCompany,
+  getPlans
 };
 
 export default BackendConnector;
