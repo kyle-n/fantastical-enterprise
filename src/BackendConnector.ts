@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User, UserData } from '../models/user';
+import { User, UserData } from './models/user';
 import {UserFormData} from './UserForm';
 
 async function signup(formData: UserFormData): Promise<User> {

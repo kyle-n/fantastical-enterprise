@@ -2,7 +2,7 @@ import React, { useState, SetStateAction, Dispatch } from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {Layout} from 'antd';
 import 'antd/dist/antd.css'
-import {User} from '../models/user';
+import {User} from './models/user';
 import Header from './Header';
 import HomePage from './Home';
 import SignupPage from './Signup';

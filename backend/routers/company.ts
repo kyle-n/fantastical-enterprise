@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import { CompanyData } from '../../models/company';
-import { UserData } from '../../models/user';
+import { CompanyData } from '../../src/models/company';
+import { UserData } from '../../src/models/user';
 
 const router = Router();
 
