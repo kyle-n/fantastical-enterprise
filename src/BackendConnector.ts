@@ -26,9 +26,17 @@ async function login(formData: UserFormData): Promise<User> {
   return new User(userData);
 }
 
-async function createCompany(formData: CompanyFormData) {
+async function createCompany(formData: CompanyFormData, userId: number) {
   const url = '/api/companies';
-  const response = await axios.post(url, formData);
+  const body = {...formData, planAdministratorId: userId};
+  const response = await axios.post(url, body);
+  const companyData: CompanyData = response.data;
+  return new Company(companyData);
+}
+
+async function updateCompany(companyId: number, formData: CompanyFormData) {
+  const url = '/api/companies/' + companyId;
+  const response = await axios.patch(url, formData);
   const companyData: CompanyData = response.data;
   return new Company(companyData);
 }
@@ -36,7 +44,8 @@ async function createCompany(formData: CompanyFormData) {
 const BackendConnector = {
   signup,
   login,
-  createCompany
+  createCompany,
+  updateCompany
 };
 
 export default BackendConnector;
