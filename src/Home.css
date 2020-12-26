@@ -13,6 +13,7 @@
   width: max-content;
   max-width: 100%;
   text-align: center;
+  height: min-content;
 }
 
 #splash-paragraph-container {
@@ -24,6 +25,7 @@
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  max-height: 100%;
 }
