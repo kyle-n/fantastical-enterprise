@@ -8,7 +8,9 @@ const Header = () => (
   <header>
     <Row>
       <Col span={8}>
-        <img src={logo} alt="Flexibits Logo" />
+        <Link to="/" title="Home">
+          <img src={logo} alt="Flexibits Logo" />
+        </Link>
       </Col>
       <Col span={8} className="header-links">
         <a href="https://flexibits.com/" title="Flexibits apps">Apps</a> 
