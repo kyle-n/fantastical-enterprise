@@ -17,7 +17,6 @@
 
 #splash-paragraph-container {
  font-size: 1.2rem;
- width: max-content;
  margin: 0 auto;
 }
 #splash-paragraph-container .ant-typography {
@@ -26,6 +25,5 @@
 
 img {
   max-width: 100%;
-  width: 100%;
   height: auto;
 }
