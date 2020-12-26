@@ -5,6 +5,7 @@ import 'antd/dist/antd.css'
 import {User} from './models/user';
 import Header from './Header';
 import HomePage from './Home';
+import PlanPage from './PlanPage';
 import SignupPage from './Signup';
 import Footer from './Footer';
 
@@ -16,7 +17,7 @@ const initialState: GlobalState = {
   user: null
 };
 
-const GlobalStateContext = React.createContext<[GlobalState, Dispatch<SetStateAction<GlobalState>>]>([initialState, () => {}]);
+export const GlobalStateContext = React.createContext<[GlobalState, Dispatch<SetStateAction<GlobalState>>]>([initialState, () => {}]);
 
 const routes = [
   {
@@ -33,7 +34,7 @@ const routes = [
   },
   {
     path: 'plan',
-    layout: <div></div>
+    layout: <PlanPage />
   }
 ];
 

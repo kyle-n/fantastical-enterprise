@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {useHistory} from 'react-router-dom';
 import BackendConnector from './BackendConnector';
+import {GlobalStateContext} from './App';
 import UserForm, {UserFormData} from './UserForm';
 import {Col, Row, Typography} from 'antd';
 const {Title, Paragraph} = Typography;
 
 const SignupPage = () => {
+  const history = useHistory();
+  const [globalState, setGlobalState] = useContext(GlobalStateContext);
   const onSignup = (formData: UserFormData) => {
-    BackendConnector.signup(formData).then(console.log)
+    BackendConnector.signup(formData).then(newUser => {
+      // @TODO: Generate JWTs with desired expiration, store them in localStorage
+      setGlobalState(() => ({user: newUser}));
+      history.push('/plan');
+    });
   };
 
   return (
