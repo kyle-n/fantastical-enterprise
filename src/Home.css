@@ -11,6 +11,7 @@
 #splash-content .solo-text {
   margin: 2rem auto;
   width: max-content;
+  max-width: 100%;
   text-align: center;
 }
 
@@ -21,4 +22,10 @@
 }
 #splash-paragraph-container .ant-typography {
   margin-bottom: 0.5rem;
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
 }
