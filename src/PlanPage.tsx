@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+// @ts-ignore
+import * as CurrencyFormat from 'react-currency-format';
 import {GlobalStateContext} from './App';
 import CompanyForm, {CompanyFormData} from './CompanyForm';
 import PlanForm, {PlanFormData} from './PlanForm';
@@ -35,7 +37,43 @@ const PlanPage = () => {
       <PlanSection currentPlan={currentPlan}
                    onUpsertPlan={setPlan}
                    hasCompany={Boolean(globalState.company?.id)} />
+      {globalState.company && currentPlan ? (
+        <>
+          <Divider />
+          <OptimizationSection plan={currentPlan} company={globalState.company} />
+        </>
+      ) : null}
     </>
+  );
+};
+
+type OptimizationSectionProps = {
+  plan: FantasticalEnterprisePlan;
+  company: Company;
+};
+
+const OptimizationSection = (props: OptimizationSectionProps) => {
+  const monthlyCost = <CurrencyFormat value={props.plan.monthlyPerMonthCost}
+                                      displayType="text"
+                                      thousandSeparator={true}
+                                      decimalScale={2}
+                                      fixedDecimalScale={true}
+                                      prefix="$" />
+  const yearlyCost = <CurrencyFormat value={props.plan.yearlyPerYearCost}
+                                      displayType="text"
+                                      thousandSeparator={true}
+                                      decimalScale={2}
+                                      fixedDecimalScale={true}
+                                      prefix="$" />
+  return (
+    <section>
+      <Paragraph>
+        Your current bill is {monthlyCost} per month and {yearlyCost} per year.
+      </Paragraph>
+      <Paragraph>
+        You are currently paying for {props.company.availableSeats} unused seats.
+      </Paragraph>
+    </section>
   );
 };
 
