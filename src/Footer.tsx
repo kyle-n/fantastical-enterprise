@@ -8,7 +8,7 @@ const footerLayout = {
 
 const Footer = () => (
   <footer style={footerLayout}>
-    <div>
+    <div style={{margin: '0.5rem 0'}}>
       <img src={logo} style={{filter: 'grayscale(100%)', maxHeight: '1.5rem'}} alt="Flexibits logo" />
     </div>
     <div>
