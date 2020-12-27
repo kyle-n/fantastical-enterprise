@@ -1,46 +1,99 @@
-# Getting Started with Create React App
+# Fantastical Enterprise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Working, simple full-stack concept of a theoretical Fantastical Enterprise. 
 
-## Available Scripts
+Site is currently [live on my personal Linode server](http://45.79.55.168:8006);
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+- Clone repo
+- `cd fantastical-enterprise && npm install`
+- Install MySQL
+- Make sure the MySQL process is running
+- Create database `fantastical` in MySQL
+- Create user `fantastical` with password `calendar` in MySQL
+- Give user `fantastical` all privileges to database `fantastical`
+- Import `fantastical-db.sql` ([instructions](https://www.digitalocean.com/community/tutorials/how-to-import-and-export-databases-and-reset-a-root-password-in-mysql)) into database `fantastical`
+- In MySQL, run `ALTER USER 'fantastical'@'localhost' IDENTIFIED WITH mysql_native_password BY 'calendar';`
+- `npm run build`
+- `mkdir build/backend`
+- Create `build/backend/.env` with the content:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+MYSQL_USER=fantastical
+MYSQL_PASSWORD=calendar
+PORT=8006
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `npm run app`
+- Open browser to `http://localhost:8006`
 
-### `npm test`
+## Tech stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I'll explain a couple of my technical choices.
 
-### `npm run build`
+### Express
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This web app is a simple Express backend that serves a React frontend and accepts its HTTP requests. I went with Express simply because I am more familiar with it and wanted to go quickly. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Additionally, using client- and server-side TypeScript meant I was able to share models using the exact same code.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### TypeScript
 
-### `npm run eject`
+I will always choose to work with TypeScript if given a choice. It's easier to write and easier to read. A good type expresses everything to other developers and makes it easy to understand what old code does.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Ant Design
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I wanted to build a site quickly, and I did not want to spend that time replicating common functionality, such as forms and a card layout. I picked Ant Design because I liked the aesthetic and it seemed to git Flexibits' branding better than, say, [Material UI](https://material-ui.com);
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### MySQL
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Any relational database could have worked here, but I wanted to use the one Flexibits does. 
 
-## Learn More
+### DayJS
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+[Moment is in maintenance mode](https://www.reddit.com/r/javascript/comments/j9fq3n/momentjs_is_deprecated_heres_how_i_chose_a/), cool people use DayJS. DayJS is immutable and only 2KB. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## What did and didn't make it
+
+I tried to stick reasonably close to 8-10 hours (though I did a little extra to deploy it).
+
+### Features
+
+- User signup
+- Email/password validation
+- Logging out and back in
+- Users can create a company
+- Users can select a plan when they've made a company
+- Users can see their unused seats, monthly costs and current plan
+- Users, plans and companies persist server-side in MySQL
+- CORS
+
+### Features Cut
+
+As you know, in real development work, there are time constraints. I tried to stick to 8-10 hours to show I will respect time limits at a real job, even though I really wanted to implement some of these.
+
+- Server-side integration tests
+- Client-side component unit tests
+- Model unit tests
+- Password hashing
+- Inviting other users
+- Calculating active seats based on other users accepting invitations, not as a number to input
+- JWTs stored in localStorage, so the user does not lose all client-side session data on refresh
+- Server rendering in Express (right now you cannot refresh the browser on any sub-route)
+- API authorization checks
+- Using JSON Schema or any other tool to validate POST/PATCH request bodies
+- Useful API errors
+- Client-side error display
+- Some fancy animations for the the colorful seats used display on `/plan`
+- TS types for `mysql-promisify`
+- Create MySQL db in code
+- Localized currency display
+
+## Small Touches
+
+I hope you like some of the small bits of polish I threw in. 
+
+- Uses Flexibits' logo
+- Replicates Flexibits website header
+- Uses Flexibits' font
