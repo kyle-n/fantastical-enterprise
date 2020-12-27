@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // @ts-ignore
 import * as CurrencyFormat from 'react-currency-format';
 import {GlobalStateContext} from './App';
@@ -35,6 +35,7 @@ const PlanPage = () => {
       setGlobalState(() => ({...globalState, company: newCompany}));
     });
   };
+
   const setPlan = (formData: PlanFormData) => {
     if (globalState.company?.id) {
       const companyFormData = globalState.company.toJson();
@@ -46,6 +47,12 @@ const PlanPage = () => {
         }).then(setCurrentPlan);
     }
   };
+  useEffect(() => {
+    const planId = globalState.company?.planId;
+    if (planId) {
+      BackendConnector.getPlan(planId).then(setCurrentPlan);
+    }
+  }, [globalState.company?.planId])
 
   const optimizationVisible = Boolean(globalState.company && currentPlan);
   return (
