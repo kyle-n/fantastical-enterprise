@@ -9,7 +9,7 @@ import './initialize-db';
 
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '..')));
 app.use(express.json());
 
 // cors
@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 app.use('/api', apiRouter);
 
 app.get('/', function (req, resp) {
-  resp.sendFile(path.join(__dirname, 'build', 'index.html'));
+  resp.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 app.listen(process.env.PORT || 8080);

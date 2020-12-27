@@ -14,7 +14,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "outDir": "../public"
+    "outDir": "../build"
   },
   "include": [
     "./",

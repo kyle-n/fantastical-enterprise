@@ -18,7 +18,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "app": "tsc -p backend/tsconfig.json && nodemon public/backend/fantastical-server.js",
+    "app": "tsc -p backend/tsconfig.json && nodemon build/backend/fantastical-server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test"
