@@ -112,7 +112,6 @@ const OptimizationSection = (props: OptimizationSectionProps) => {
 const SeatsUsedDisplay = (props: {company: Company}) => {
   let activeSeatCountColor: string;
   const percentUsed = props.company.activeSeats / props.company.totalSeats * 100;
-  console.log(percentUsed)
   if (percentUsed < 25) {
     activeSeatCountColor = 'red';
   } else if (percentUsed < 50) {
