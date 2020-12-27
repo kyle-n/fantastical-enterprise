@@ -50,7 +50,7 @@ const PlanPage = () => {
   const optimizationVisible = Boolean(globalState.company && currentPlan);
   return (
     <Row>
-      <Col span={optimizationVisible ? 12 : 24}>
+      <Col xs={{span: 24, order: 3}} md={{span: optimizationVisible ? 12 : 24, order: 1}}>
         <CompanySection company={globalState.company} onCreateCompany={setCompany} />
         <Divider />
         <PlanSection currentPlan={currentPlan}
@@ -58,10 +58,14 @@ const PlanPage = () => {
                      hasCompany={Boolean(globalState.company?.id)} />
       </Col>
       {optimizationVisible ? (
-        <Col span={12}>
-          <Divider />
-          <OptimizationSection plan={currentPlan!} company={globalState.company!} />
-        </Col>
+        <>
+          <Col xs={{span: 24, order: 1}} md={{span: 12, order: 2}}>
+            <OptimizationSection plan={currentPlan!} company={globalState.company!} />
+          </Col>
+          <Col xs={{span: 24, order: 2}} md={{span: 0}}>
+            <Divider />
+          </Col>
+        </>
       ) : null}
     </Row>
   );
