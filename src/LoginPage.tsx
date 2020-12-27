@@ -9,11 +9,19 @@ const {Title} = Typography;
 const LoginPage = () => {
   const history = useHistory();
   const [globalState, setGlobalState] = useContext(GlobalStateContext);
-  const onLogin = (formData: UserFormData) => {
-    BackendConnector.login(formData).then(user => {
-      setGlobalState(() => ({...globalState, user}));
-      history.push('/plan');
-    });
+  const onLogin = async (formData: UserFormData) => {
+    const update = {...globalState};
+    try {
+      update.user = await BackendConnector.login(formData);
+      if (update.user.companyId) {
+        update.company = await BackendConnector.getCompany(update.user.companyId);
+      } else {
+        update.company = null;
+      }
+    // @TODO: Display API errors
+    } catch {}
+    setGlobalState(() => update);
+    history.push('/plan');
   };
 
   return (
