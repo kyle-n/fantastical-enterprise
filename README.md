@@ -60,6 +60,7 @@ I tried to stick reasonably close to 8-10 hours (though I did a little extra to 
 
 ### Features Included
 
+- Mobile- and desktop-friendly layouts
 - User signup
 - Email/password validation
 - Logging out and back in
