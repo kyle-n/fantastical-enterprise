@@ -2,7 +2,7 @@
 
 Working, simple full-stack concept of a theoretical Fantastical Enterprise. 
 
-Site is currently [live on my personal Linode server](http://45.79.55.168:8006);
+Site is currently [live on my personal Linode server](http://45.79.55.168:8006).
 
 ## Installation
 
@@ -28,7 +28,7 @@ PORT=8006
 - `npm run app`
 - Open browser to `http://localhost:8006`
 
-## Tech stack
+## Tech Stack
 
 I'll explain a couple of my technical choices.
 
@@ -40,25 +40,25 @@ Additionally, using client- and server-side TypeScript meant I was able to share
 
 ### TypeScript
 
-I will always choose to work with TypeScript if given a choice. It's easier to write and easier to read. A good type expresses everything to other developers and makes it easy to understand what old code does.
+I will always choose to work with TypeScript. It's easier to write and easier to read. A good type expresses everything to other developers and makes it easy to understand what old code does.
 
 ### Ant Design
 
-I wanted to build a site quickly, and I did not want to spend that time replicating common functionality, such as forms and a card layout. I picked Ant Design because I liked the aesthetic and it seemed to git Flexibits' branding better than, say, [Material UI](https://material-ui.com);
+I wanted to build a site quickly, and I did not want to spend that time replicating common functionality, such as forms and a card layout. I picked Ant Design because I liked the aesthetic and it seemed to git Flexibits' branding better than, say, [Material UI](https://material-ui.com).
 
 ### MySQL
 
-Any relational database could have worked here, but I wanted to use the one Flexibits does. 
+Any relational database could have worked here, but I wanted to use the one you guys asked for!
 
 ### DayJS
 
 [Moment is in maintenance mode](https://www.reddit.com/r/javascript/comments/j9fq3n/momentjs_is_deprecated_heres_how_i_chose_a/), cool people use DayJS. DayJS is immutable and only 2KB. 
 
-## What did and didn't make it
+## Features
 
 I tried to stick reasonably close to 8-10 hours (though I did a little extra to deploy it).
 
-### Features
+### Features Included
 
 - User signup
 - Email/password validation
