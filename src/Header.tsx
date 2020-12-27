@@ -21,7 +21,10 @@ const Header = (props: {loggedIn: boolean}) => (
       </Col>
       <Col xs={24} md={8} id="account-link-container">
       {props.loggedIn ? (
-        <LogOutButton />
+        <>
+          <Link to="/plan" title="My Plan">My Plan</Link>
+          <LogOutButton />
+        </>
       ) : (
         <>
           <Link to="/login" title="Log in">Sign In</Link>
