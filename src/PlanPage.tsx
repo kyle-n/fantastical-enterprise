@@ -179,7 +179,7 @@ const CompanySection = (props: CompanySectionProps) => {
     <section>
       <Row>
         {/* @TODO: Reusable page title component */}
-        <Col span={20} offset={4}>
+        <Col xs={{span: 24, offset: 0}} md={{span: 20, offset: 4}}>
           <Title className="" level={2}>Create Company</Title>
           <Paragraph>
             You must create a company in order to select a plan.

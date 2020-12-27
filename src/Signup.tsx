@@ -22,7 +22,7 @@ const SignupPage = () => {
       <section>
         <Row>
           {/* @TODO: Reusable page title component */}
-          <Col span={20} offset={4}>
+          <Col xs={{span: 24, offset: 0}} md={{span: 20, offset: 4}}>
             <Title className="" level={2}>Sign Up</Title>
             <Paragraph>
               Passwords must have at least 8 characters and 1 number.

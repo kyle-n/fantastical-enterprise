@@ -37,7 +37,7 @@ const CompanyForm = (props: CompanyFormProps) => {
             required>
         <Input type="number" />
       </Item>
-      <Item wrapperCol={{offset, span}}>
+      <Item wrapperCol={{xs: {offset: 0, span: 24}, md: {offset, span}}}>
         <Button type="primary" htmlType="submit">Submit</Button>
       </Item>
     </Form>

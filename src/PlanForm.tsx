@@ -32,12 +32,11 @@ const PlanForm = (props: PlanFormProps) => {
       <Item label=""
             name="planId"
             required>
-            {/* style={{display: 'flex', justifyContent: 'flex-end'}}> */}
         <Radio.Group disabled={props.disabled}>
           {plans.map(plan => <PlanOption key={plan.id} plan={plan} />)}
         </Radio.Group>
       </Item>
-      <Item wrapperCol={{offset, span}}>
+      <Item wrapperCol={{xs: {offset: 0, span: 24}, md: {offset, span}}}>
         <Button type="primary" htmlType="submit">Submit</Button>
       </Item>
     </Form>
@@ -59,7 +58,7 @@ const PlanOption = (props: {plan: FantasticalEnterprisePlan}) => {
                                       fixedDecimalScale={true}
                                       prefix="$" />
   return (
-    <Radio key={props.plan.id} value={props.plan.id}>
+    <Radio value={props.plan.id}>
       <Card title={props.plan.name} style={{marginTop: '1rem', right: '40%'}}>
         <Paragraph>
           <strong>{monthlyCost}</strong> / month
