@@ -3,7 +3,7 @@
   color: black;
 }
 
-#signup-button {
+.blue-button {
   background-color: rgb(26, 121, 255);
   border-radius: 24px;
   box-shadow: rgb(115, 173, 255) 0px 10px 10px -10px;

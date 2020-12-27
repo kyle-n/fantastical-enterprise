@@ -50,7 +50,7 @@ function App() {
       <main>
         <Layout>
           <Layout.Header style={{background: 'none', height: 'min-content'}}>
-            <Header />
+            <Header loggedIn={Boolean(globalState.user)} />
           </Layout.Header>
           <Layout.Content style={{margin: '0 1rem'}}>
             <Switch>
